@@ -1,7 +1,7 @@
 # == Class: 3dm2
 #
 # This module downloads via wget, unzips, installs, and configures the 3ware
-# 3dm2/tdm2 RAID controller management software
+# 3dm2/tdm2 & tw_cli RAID controller management software
 #
 # === Parameters
 #

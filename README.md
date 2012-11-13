@@ -1,16 +1,22 @@
-3dm2
+Puppet 3dm2 Module
+====================
 
-This is the 3dm2 module.
+Description
+-----------
 
-License
--------
-
-
-Contact
--------
+This module downloads via wget, unzips, installs, and configures the 3ware
+3dm2/tdm2 RAID controller management software
 
 
-Support
--------
+Examples
+--------
 
-Please log tickets and issues at our [Projects site](http://projects.example.com)
+    class{ '3dm2':
+      package_filename  => '3DM2_CLI-Linux_10.2.1_9.5.4.zip',
+      package_url       => 'http://example.org/3DM2_CLI-Linux_10.2.1_9.5.4.zip',
+    }
+
+Copyright
+---------
+
+Copyright (C) 2012 Joshua Hoblitt <jhoblitt@cpan.org>

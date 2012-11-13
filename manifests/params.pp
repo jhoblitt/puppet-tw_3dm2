@@ -5,7 +5,7 @@ class 3dm2::params {
       $unzip_path       = '/root/3ware'
     }
     default: {
-      fail()
+      fail("Module ${module_name} is not supported on ${::operatingsystem}")
     }
   }
 }

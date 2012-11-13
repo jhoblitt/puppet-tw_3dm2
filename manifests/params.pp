@@ -1,4 +1,4 @@
-class 3dm2::params {
+class tw_3dm2::params {
 
   case $::osfamily {
     redhat: {

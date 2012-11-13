@@ -3,4 +3,4 @@ fixtures:
     "stdlib": "git://github.com/puppetlabs/puppetlabs-stdlib.git"
     "wget": "git://github.com/maestrodev/puppet-wget.git"
   symlinks:
-    "3dm2": "#{source_dir}"
+    "tw_3dm2": "#{source_dir}"

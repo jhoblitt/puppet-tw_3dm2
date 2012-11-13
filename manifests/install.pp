@@ -1,4 +1,4 @@
-class 3dm2::install inherits 3dm2 {
+class tw_3dm2::install inherits tw_3dm2 {
   include wget
 
   file { $unzip_path:

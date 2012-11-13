@@ -1,4 +1,4 @@
-# == Class: 3dm2
+# == Class: tw_3dm2
 #
 # This module downloads via wget, unzips, installs, and configures the 3ware
 # 3dm2/tdm2 & tw_cli RAID controller management software
@@ -20,7 +20,7 @@
 #
 # === Examples
 #
-#  class{ '3dm2':
+#  class{ 'tw_3dm2':
 #    package_filename  => '3DM2_CLI-Linux_10.2.1_9.5.4.zip',
 #    package_url       => 'http://example.org/3DM2_CLI-Linux_10.2.1_9.5.4.zip',
 #    emailserver       => 'mail.example.org',
@@ -35,21 +35,21 @@
 # Copyright (C) 2012 Joshua Hoblitt
 #
 
-class 3dm2 (
+class tw_3dm2 (
   $package_url,
   $package_filename,
   $emailserver = $::domain,
-  $unzip_path = $3dm2::params::unzip_path,
+  $unzip_path = $tw_3dm2::params::unzip_path,
 #  $ensure = 'present',
-) inherits 3dm2::params
+) inherits tw_3dm2::params
 {
   validate_string($package_url)
   validate_string($package_filename)
   validate_absolute_path($unzip_path)
 #  validate_re($ensure, '^present$|^absent$')
 
-  class{'3dm2::install': } ->
-  class{'3dm2::config': } ->
-  class{'3dm2::service': } ->
-  Class['3dm2']
+  class{'tw_3dm2::install': } ->
+  class{'tw_3dm2::config': } ->
+  class{'tw_3dm2::service': } ->
+  Class['tw_3dm2']
 }

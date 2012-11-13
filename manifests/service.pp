@@ -1,4 +1,4 @@
-class 3dm2::service {
+class tw_3dm2::service {
   service { 'tdm2':
     enable      => true,
     ensure      => running,

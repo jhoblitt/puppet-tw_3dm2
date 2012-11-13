@@ -11,6 +11,9 @@
 # package_filename
 #   name of zip file
 #
+# emailserver
+#   sets the 3dm2.conf EmailServer variable - defaults to $::domain
+#
 # unzip_path
 #   absolute file path in which to unpack the zip file - defaults to
 #   '/root/3ware'
@@ -20,6 +23,7 @@
 #  class{ '3dm2':
 #    package_filename  => '3DM2_CLI-Linux_10.2.1_9.5.4.zip',
 #    package_url       => 'http://example.org/3DM2_CLI-Linux_10.2.1_9.5.4.zip',
+#    emailserver       => 'mail.example.org',
 #  }
 #
 # === Authors
@@ -34,6 +38,7 @@
 class 3dm2 (
   $package_url,
   $package_filename,
+  $emailserver = $::domain,
   $unzip_path = $3dm2::params::unzip_path,
 #  $ensure = 'present',
 ) inherits 3dm2::params

@@ -14,6 +14,7 @@ Examples
     class{ '3dm2':
       package_filename  => '3DM2_CLI-Linux_10.2.1_9.5.4.zip',
       package_url       => 'http://example.org/3DM2_CLI-Linux_10.2.1_9.5.4.zip',
+      emailserver       => 'mail.example.org',
     }
 
 Copyright

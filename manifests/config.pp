@@ -3,7 +3,7 @@ class tw_3dm2::config {
     owner   => root,
     group   => root,
     mode    => 0644,
-    content => template('3dm2/3dm2.conf.erb'),
+    content => template("${module_name}/3dm2.conf.erb"),
     require => Class['tw_3dm2::install'],
     notify  => Class['tw_3dm2::service'],
   }

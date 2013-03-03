@@ -2,7 +2,7 @@ name    'jhoblitt-tw_3dm2'
 version '0.0.1'
 
 author 'Joshua Hoblitt <jhoblitt@cpan.org>'
-license 'GNU General Public License 2 or any later version'
+license 'Apache'
 project_page 'https://github.com/jhoblitt/puppet-tw_3dm2'
 source 'https://github.com/jhoblitt/puppet-tw_3dm2.git'
 summary 'installs the 3ware 3dm2/tdm2 & tw_cli RAID controller management software'

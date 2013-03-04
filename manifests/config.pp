@@ -11,7 +11,7 @@
 # Copyright (C) 2012-2013 Joshua Hoblitt
 #
 
-class tw_3dm2::config {
+class tw_3dm2::config inherits tw_3dm2 {
   file { '/etc/3dm2/3dm2.conf':
     owner   => root,
     group   => root,

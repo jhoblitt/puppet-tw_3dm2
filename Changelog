@@ -1,0 +1,15 @@
+`v0.0.2`
+========
+
+Joshua Hoblitt <jhoblitt@cpan.org> (10):
+      * mention tw_cli in summary
+      * fix broken module_name used to for 3dm.conf erb template
+      * change license from GPLv2 or later to Apache 2.0
+      * cleanup code to pass puppet-lint and add the 'lint' rake target
+      * enable travis-ci support
+      * change module version to v0.0.2
+      * fix 3dm2.conf template namespace issues with puppet >= 3
+      * validate $unzip_path param to class tw_3dm2
+      * improve basic test coverage and add some negative param tests
+      * update copyright notices
+

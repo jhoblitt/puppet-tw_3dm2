@@ -1,3 +1,16 @@
+# == Class: tw_3dm2::install
+#
+# installs the package that provides 3dm2
+#
+# === Authors
+#
+# Joshua Hoblitt <jhoblitt@cpan.org>
+#
+# === Copyright
+#
+# Copyright (C) 2012-2013 Joshua Hoblitt
+#
+
 class tw_3dm2::install inherits tw_3dm2 {
   include wget
 
@@ -22,8 +35,8 @@ class tw_3dm2::install inherits tw_3dm2 {
 
   exec { 'sh install.sh --install -fN0Y':
     path        => ['/bin', '/usr/bin'],
-    cwd         => $unzip_path, 
-    creates     => "/usr/sbin/3dm2",
+    cwd         => $unzip_path,
+    creates     => '/usr/sbin/3dm2',
     require     => Exec['3dm2.unzip'],
   }
 }

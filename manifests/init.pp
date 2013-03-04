@@ -24,6 +24,7 @@
 #    package_filename  => '3DM2_CLI-Linux_10.2.1_9.5.4.zip',
 #    package_url       => 'http://example.org/3DM2_CLI-Linux_10.2.1_9.5.4.zip',
 #    emailserver       => 'mail.example.org',
+#    unzip_path        => '/root/3ware',
 #  }
 #
 # === Authors
@@ -46,6 +47,7 @@ class tw_3dm2 (
   validate_string($package_url)
   validate_string($package_filename)
   validate_absolute_path($unzip_path)
+  validate_string($unzip_path)
 #  validate_re($ensure, '^present$|^absent$')
 
   class{'tw_3dm2::install': } ->

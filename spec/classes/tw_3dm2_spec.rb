@@ -60,7 +60,7 @@ describe 'tw_3dm2' do
     it do
       expect {
         should include_class('tw_3dm2') 
-      }.to raise_error(Puppet::Error, /^Must pass package_filename/)
+      }.to raise_error(Puppet::Error, /^Must pass (package_filename|package_url)/)
     end
   end
 

@@ -13,6 +13,8 @@
 
 class tw_3dm2::params {
 
+  $emailserver = 'localhost'
+
   case $::osfamily {
     redhat: {
       $unzip_path = '/root/3ware'

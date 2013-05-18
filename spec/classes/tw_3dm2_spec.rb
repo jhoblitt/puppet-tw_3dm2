@@ -11,9 +11,14 @@ describe 'tw_3dm2' do
     }}
     it do
       should include_class('tw_3dm2') 
-      should contain_file('/etc/3dm2/3dm2.conf') 
+      should include_class('tw_3dm2::install') 
+      should include_class('tw_3dm2::config') 
+      should include_class('tw_3dm2::service') 
+      should include_class('wget') 
+      should contain_file('/etc/3dm2/3dm2.conf')\
+        .with_content(/^EmailServer localhost$/m) 
       should contain_service('tdm2') 
-      should contain_file('/root/3ware').with({ 'ensure' => 'directory' }) 
+      should contain_file('/root/3ware').with({ 'ensure' => 'directory' })
     end
   end
 
@@ -25,9 +30,14 @@ describe 'tw_3dm2' do
     }}
     it do
       should include_class('tw_3dm2') 
-      should contain_file('/etc/3dm2/3dm2.conf') 
+      should include_class('tw_3dm2::install') 
+      should include_class('tw_3dm2::config') 
+      should include_class('tw_3dm2::service') 
+      should include_class('wget') 
+      should contain_file('/etc/3dm2/3dm2.conf')\
+        .with_content(/^EmailServer 10.10.10.10$/m) 
       should contain_service('tdm2') 
-      should contain_file('/root/3ware').with({ 'ensure' => 'directory' }) 
+      should contain_file('/root/3ware').with({ 'ensure' => 'directory' })
     end
   end
 
@@ -39,9 +49,14 @@ describe 'tw_3dm2' do
     }}
     it do
       should include_class('tw_3dm2') 
-      should contain_file('/etc/3dm2/3dm2.conf') 
+      should include_class('tw_3dm2::install') 
+      should include_class('tw_3dm2::config') 
+      should include_class('tw_3dm2::service') 
+      should include_class('wget') 
+      should contain_file('/etc/3dm2/3dm2.conf')\
+        .with_content(/^EmailServer localhost$/m) 
       should contain_service('tdm2') 
-      should contain_file('/foo/bar/baz').with({ 'ensure' => 'directory' }) 
+      should contain_file('/foo/bar/baz').with({ 'ensure' => 'directory' })
     end
   end
 

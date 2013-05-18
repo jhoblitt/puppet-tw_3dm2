@@ -39,7 +39,7 @@
 class tw_3dm2 (
   $package_url,
   $package_filename,
-  $emailserver = $::domain,
+  $emailserver = $tw_3dm2::params::emailserver,
   $unzip_path = $tw_3dm2::params::unzip_path,
 #  $ensure = 'present',
 ) inherits tw_3dm2::params
@@ -47,6 +47,7 @@ class tw_3dm2 (
   validate_string($package_url)
   validate_string($package_filename)
   validate_absolute_path($unzip_path)
+  validate_string($emailserver)
   validate_string($unzip_path)
 #  validate_re($ensure, '^present$|^absent$')
 

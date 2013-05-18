@@ -137,7 +137,7 @@ if Facter.value(:kernel) == "Linux"
   # or a list of controllers (which we wouldn't have without a working tw_cli)
   tw_controllers = Facter.value('tw_controllers')
 
-  if defined?(tw_cli) and defined?(tw_controllers)
+  unless tw_cli.nil? and tw_controllers.nil?
     # iterate over each controller and get the list of attached drives
     controllers = tw_controllers.split(',') 
     controllers.each{ |unit|

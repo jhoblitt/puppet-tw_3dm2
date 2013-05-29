@@ -46,6 +46,22 @@ end
 # c0    9650SE-8LPML 8         8        3       0       1       1      OK       
 # 
 
+# example output 4:
+#
+# # tw_cli show version
+# CLI Version = 2.00.06.007
+# API Version = 2.03.00.006
+# CLI Compatible Range = [2.00.00.001 to 2.00.06.007]
+#
+# # tw_cli show
+#
+# Ctl   Model        Ports   Drives   Units   NotOpt   RRate   VRate   BBU
+# ------------------------------------------------------------------------
+# c2    7506-8       8       8        2       0        3       -       -        
+# c3    7506-8       8       8        2       0        3       -       -        
+#
+
+
 Facter.add(:tw_controllers) do
   confine :kernel => "Linux"
   setcode do
@@ -131,6 +147,34 @@ end
 # p7    OK             u2   931.51 GB SATA  7   -            ST31000524NS        
 # 
 
+# example output 4:
+#
+# # tw_cli show version
+# CLI Version = 2.00.06.007
+# API Version = 2.03.00.006
+# CLI Compatible Range = [2.00.00.001 to 2.00.06.007]
+# 
+# # tw_cli show
+# 
+# Ctl   Model        Ports   Drives   Units   NotOpt   RRate   VRate   BBU
+# ------------------------------------------------------------------------
+# c2    7506-8       8       8        2       0        3       -       -        
+# c3    7506-8       8       8        2       0        3       -       -        
+# 
+# [root@archive1 sbin]# tw_cli /c2 show drivestatus
+# 
+# Port   Status           Unit   Size        Blocks        Serial
+# ---------------------------------------------------------------
+# p0     OK               u0     233.76 GB   490234752     Y69GCKME            
+# p1     OK               u1     233.76 GB   490234752     Y60TM1TE            
+# p2     OK               u1     233.76 GB   490234752     Y648BGJE            
+# p3     OK               u1     233.76 GB   490234752     Y649DYLE            
+# p4     OK               u1     233.76 GB   490234752     Y649PZ2E            
+# p5     OK               u1     233.76 GB   490234752     Y64A0GBE            
+# p6     OK               u1     233.76 GB   490234752     Y64A0H1E            
+# p7     OK               u1     233.76 GB   490234752     Y648BF9E            
+# 
+
 if Facter.value(:kernel) == "Linux"
   # we can't do anything without the tw_cli utility
   tw_cli = Facter.value('tw_cli')
@@ -147,10 +191,10 @@ if Facter.value(:kernel) == "Linux"
       # drives = { 'sas' = ['0','1'] }
       drives = {}
       output.split(/\n/).each { |line|
-        next if line =~ /^$/      # blank line
-        next if line =~ /^\s+/    # white space only (may not be needed)
-        next if line =~ /^VPort+/ # header line
-        next if line =~ /^-+/     # deliminter line
+        next if line =~ /^$/              # blank line
+        next if line =~ /^\s+/            # white space only (not needed?)
+        next if line =~ /^(VPort|Port)+/  # header line
+        next if line =~ /^-+/             # deliminter line
 
         fields = line.split(/\s+/)
         vport  = fields[0]

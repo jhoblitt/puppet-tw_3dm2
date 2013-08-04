@@ -17,10 +17,9 @@ c8    9690SA-8I    8         8        1       0       1       1      OK
 
 EOS
     Facter.fact(:tw_controllers).value.should == 'c8'
-    nil
   end
 
   describe 'tw_cli fact missing' do
-    Facter.fact(:tw_controllers).value.should be_nil
+    Facter.fact(:tw_controllers).value.should == nil
   end
 end

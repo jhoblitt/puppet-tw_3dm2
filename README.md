@@ -1,5 +1,7 @@
 Puppet tw_3dm2 Module
-====================
+=====================
+
+[![Build Status](https://travis-ci.org/jhoblitt/puppet-tw_3dm2.png)](https://travis-ci.org/jhoblitt/puppet-tw_3dm2)
 
 Description
 -----------

@@ -61,17 +61,45 @@ end
 # c3    7506-8       8       8        2       0        3       -       -        
 #
 
+# example of no controllers being present
+#
+# # tw_cli show version
+# CLI Version = 2.00.11.016
+# API Version = 2.08.00.017
+# 
+# # tw_cli show
+# 
+# No controller found.
+# Make sure appropriate LSI/3ware device driver(s) are loaded.
+# 
+# # echo $?
+# 0
+
 
 Facter.add(:tw_controllers) do
   confine :kernel => "Linux"
+
   setcode do
     # we can't do anything without the tw_cli utility
+    # XXX this should probably be a confine but I can't figure out how to
+    # confine on the existance of a fact and not it's specific value
     tw_cli = Facter.value('tw_cli')
-    unless tw_cli
-      return nil
+    if tw_cli.nil?
+      Facter.debug "tw_cli fact is nil"
+      next nil
     end
 
-    output = Facter::Util::Resolution.exec("#{tw_cli} show")
+    cmd = "#{tw_cli} show"
+    output = Facter::Util::Resolution.exec(cmd)
+    unless output
+      Facter.debug "#{cmd} returned no output"
+      next nil
+    end
+
+    if output.include?('No controller found.') 
+      Facter.debug "#{cmd} can not find a controller"
+      next nil
+    end
 
     # parse out the device name of each controller
     # controllers = ['c0','c1']
@@ -84,7 +112,12 @@ Facter.add(:tw_controllers) do
       controllers.push(line.split(/\s+/)[0])
     }
 
-    controllers.sort.join(',')
+    if controllers.count > 0
+      Facter.debug "unable to parse the output of #{cmd}"
+      controllers.sort.join(',')
+    else
+      nil
+    end
   end
 end
 
@@ -181,7 +214,7 @@ if Facter.value(:kernel) == "Linux"
   # or a list of controllers (which we wouldn't have without a working tw_cli)
   tw_controllers = Facter.value('tw_controllers')
 
-  unless tw_cli.nil? and tw_controllers.nil?
+  unless tw_cli.nil? or tw_controllers.nil? 
     # iterate over each controller and get the list of attached drives
     controllers = tw_controllers.split(',') 
     controllers.each{ |unit|
@@ -209,7 +242,6 @@ if Facter.value(:kernel) == "Linux"
         # to disks as "pN" or just "N" and smartctl uses just N
         drives[type].push(/^p(\d+)$/.match(vport)[1])
       }
-
       # create a new fact for each controller + drive type pair
       drives.each_key{ |type| 
         Facter.add(:"tw_controller_#{unit}_#{type}_drives") do

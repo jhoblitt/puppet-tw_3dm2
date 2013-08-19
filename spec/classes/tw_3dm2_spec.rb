@@ -62,6 +62,7 @@ describe 'tw_3dm2' do
 
   context 'with no params' do
     it do
+     pending("class validation parameter check ordering seems to be done in an unstable order")
       expect {
         should include_class('tw_3dm2') 
       }.to raise_error(Puppet::Error, /^Must pass package_url/)

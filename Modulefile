@@ -1,5 +1,5 @@
 name    'jhoblitt-tw_3dm2'
-version '0.0.2'
+version '0.0.3'
 
 author 'Joshua Hoblitt <jhoblitt@cpan.org>'
 license 'Apache'

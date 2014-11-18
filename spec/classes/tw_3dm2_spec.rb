@@ -10,11 +10,11 @@ describe 'tw_3dm2' do
       :package_filename => 'file.zip',
     }}
     it do
-      should include_class('tw_3dm2') 
-      should include_class('tw_3dm2::install') 
-      should include_class('tw_3dm2::config') 
-      should include_class('tw_3dm2::service') 
-      should include_class('wget') 
+      should contain_class('tw_3dm2') 
+      should contain_class('tw_3dm2::install') 
+      should contain_class('tw_3dm2::config') 
+      should contain_class('tw_3dm2::service') 
+      should contain_class('wget') 
       should contain_file('/etc/3dm2/3dm2.conf')\
         .with_content(/^EmailServer localhost$/m) 
       should contain_service('tdm2') 
@@ -29,11 +29,11 @@ describe 'tw_3dm2' do
       :emailserver      => '10.10.10.10',
     }}
     it do
-      should include_class('tw_3dm2') 
-      should include_class('tw_3dm2::install') 
-      should include_class('tw_3dm2::config') 
-      should include_class('tw_3dm2::service') 
-      should include_class('wget') 
+      should contain_class('tw_3dm2') 
+      should contain_class('tw_3dm2::install') 
+      should contain_class('tw_3dm2::config') 
+      should contain_class('tw_3dm2::service') 
+      should contain_class('wget') 
       should contain_file('/etc/3dm2/3dm2.conf')\
         .with_content(/^EmailServer 10.10.10.10$/m) 
       should contain_service('tdm2') 
@@ -48,11 +48,11 @@ describe 'tw_3dm2' do
       :unzip_path       => '/foo/bar/baz',
     }}
     it do
-      should include_class('tw_3dm2') 
-      should include_class('tw_3dm2::install') 
-      should include_class('tw_3dm2::config') 
-      should include_class('tw_3dm2::service') 
-      should include_class('wget') 
+      should contain_class('tw_3dm2') 
+      should contain_class('tw_3dm2::install') 
+      should contain_class('tw_3dm2::config') 
+      should contain_class('tw_3dm2::service') 
+      should contain_class('wget') 
       should contain_file('/etc/3dm2/3dm2.conf')\
         .with_content(/^EmailServer localhost$/m) 
       should contain_service('tdm2') 
@@ -62,9 +62,9 @@ describe 'tw_3dm2' do
 
   context 'with no params' do
     it do
-     pending("class validation parameter check ordering seems to be done in an unstable order")
+     skip("class validation parameter check ordering seems to be done in an unstable order")
       expect {
-        should include_class('tw_3dm2') 
+        should contain_class('tw_3dm2') 
       }.to raise_error(Puppet::Error, /^Must pass package_url/)
     end
   end
@@ -75,7 +75,7 @@ describe 'tw_3dm2' do
     }}
     it do
       expect {
-        should include_class('tw_3dm2') 
+        should contain_class('tw_3dm2') 
       }.to raise_error(Puppet::Error, /^Must pass (package_filename|package_url)/)
     end
   end
@@ -86,7 +86,7 @@ describe 'tw_3dm2' do
     }}
     it do
       expect {
-        should include_class('tw_3dm2') 
+        should contain_class('tw_3dm2') 
       }.to raise_error(Puppet::Error, /^Must pass package_url/)
     end
   end
@@ -99,7 +99,7 @@ describe 'tw_3dm2' do
     }}
     it do
       expect {
-        should include_class('tw_3dm2') 
+        should contain_class('tw_3dm2') 
       }.to raise_error(Puppet::Error, /^Module tw_3dm2 is not supported/)
     end
   end

@@ -4,7 +4,7 @@ RSpec.configure do |config|
   config.mock_framework = :mocha
 end
 
-describe 'tw_controllers fact' do
+describe 'tw_controllers fact' :type => :fact do
   describe 'tw_cli fact set' do
     Facter.fact(:tw_cli).stubs(:value).returns '/usr/sbin/tw_cli'
     Facter.fact(:tw_cli).value.should == '/usr/sbin/tw_cli'

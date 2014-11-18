@@ -13,9 +13,9 @@
 
 class tw_3dm2::service {
   service { 'tdm2':
-    ensure      => running,
-    enable      => true,
-    hasrestart  => true,
-    hasstatus   => true,
+    ensure     => running,
+    enable     => true,
+    hasrestart => true,
+    hasstatus  => true,
   }
 }

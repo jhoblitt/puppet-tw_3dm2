@@ -26,17 +26,17 @@ class tw_3dm2::install inherits tw_3dm2 {
   }
 
   exec { "unzip ${package_filename}":
-    alias       => '3dm2.unzip',
-    path        => ['/bin', '/usr/bin'],
-    cwd         => $unzip_path,
-    creates     => "${unzip_path}/install.sh",
-    require     => Wget::Fetch[$package_filename],
+    alias   => '3dm2.unzip',
+    path    => ['/bin', '/usr/bin'],
+    cwd     => $unzip_path,
+    creates => "${unzip_path}/install.sh",
+    require => Wget::Fetch[$package_filename],
   }
 
   exec { 'sh install.sh --install -fN0Y':
-    path        => ['/bin', '/usr/bin'],
-    cwd         => $unzip_path,
-    creates     => '/usr/sbin/3dm2',
-    require     => Exec['3dm2.unzip'],
+    path    => ['/bin', '/usr/bin'],
+    cwd     => $unzip_path,
+    creates => '/usr/sbin/3dm2',
+    require => Exec['3dm2.unzip'],
   }
 }
